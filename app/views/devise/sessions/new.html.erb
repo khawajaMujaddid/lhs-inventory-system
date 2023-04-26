@@ -1,26 +1,16 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<!-- component -->
+<div class="bg-gray-200 rounded py-16 px-12 m-16 flex flex-col items-center justify-center">
+  <!-- User profile image -->
+  <img class="rounded-full h-32 w-32" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="user avatar" />
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'mt-8 mb-4'}) do |f| %>
+    <div class="mb-4">
+      <%= f.label :email, class: 'sr-only' %>
+      <%= f.email_field :email, class: 'border-solid border border-gray-400 rounded px-2 py-3', placeholder: "Email address", autofocus: true, autocomplete: "email" %>
     </div>
+    <div class="mb-4">
+      <%= f.label :password, class: 'sr-only' %>
+      <%= f.password_field :password, class: 'border-solid border border-gray-400 rounded px-2 py-3', placeholder: "Password", autocomplete: "current-password" %>
+    </div>
+    <%= f.submit "Log in", class: "bg-gray-500 hover:bg-gray-600 text-white font-bold w-full py-3" %>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

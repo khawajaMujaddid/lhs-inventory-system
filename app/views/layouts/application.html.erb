@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>InventoryManagement</title>
+    <title>LHS System</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <link rel="stylesheet" href="https://horizon-tailwind-react-git-tailwind-components-horizon-ui.vercel.app/static/css/main.ad49aa9b.css" />
   </head>
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <div class="antialiased bg-black w-full min-h-screen text-slate-300 relative py-4">
+      <div class="grid grid-cols-12  mx-4 gap-2 sm:gap-4 md:gap-6 lg:gap-10 xl:gap-14 my-10 px-2">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
