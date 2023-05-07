@@ -7,5 +7,5 @@ Rails.application.routes.draw do
 
   resources :user, only: %i[index]
   resources :purchase
-  resources :product
+  resources :products
 end

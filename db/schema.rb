@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_17_173202) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_07_155953) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "product_types", force: :cascade do |t|
+  create_table "main_categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -27,8 +27,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_17_173202) do
     t.decimal "price", precision: 10, scale: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "product_type_id", null: false
-    t.index ["product_type_id"], name: "index_products_on_product_type_id"
+    t.bigint "main_category_id", null: false
+    t.bigint "sub_category_id", null: false
+    t.index ["main_category_id"], name: "index_products_on_main_category_id"
+    t.index ["sub_category_id"], name: "index_products_on_sub_category_id"
   end
 
   create_table "purchases", force: :cascade do |t|
@@ -39,6 +41,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_17_173202) do
     t.datetime "updated_at", null: false
     t.bigint "product_id", null: false
     t.index ["product_id"], name: "index_purchases_on_product_id"
+  end
+
+  create_table "sub_categories", force: :cascade do |t|
+    t.string "name"
+    t.bigint "main_category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["main_category_id"], name: "index_sub_categories_on_main_category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -54,6 +64,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_17_173202) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "products", "product_types"
+  add_foreign_key "products", "main_categories"
+  add_foreign_key "products", "sub_categories"
   add_foreign_key "purchases", "products"
+  add_foreign_key "sub_categories", "main_categories"
 end
