@@ -7,5 +7,8 @@ Rails.application.routes.draw do
 
   resources :user, only: %i[index]
   resources :purchase
-  resources :products
+  resources :products do
+    get :subcategory, on: :collection
+  end
+  resources :main_categories
 end

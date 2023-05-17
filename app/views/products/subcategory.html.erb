@@ -1,0 +1,8 @@
+<%= turbo_frame_tag "sub_categories" do %>
+  <% if @sub_categories.present? && @sub_categories.any? %>
+    <div class="mb-3" style="width: 28rem;">
+      <label class="text-white-800 font-semibold block my-3 text-md">Sub Category</label>
+      <%= select_tag :sub_category_id, options_for_select(@sub_categories.map{|m| [m&.name&.humanize, m.id]}), class: 'text-black w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none', prompt: 'Select Sub Category' %>
+    </div>
+  <% end %>
+<% end %>

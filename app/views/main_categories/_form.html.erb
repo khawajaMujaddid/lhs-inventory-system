@@ -1,0 +1,14 @@
+<%= simple_form_for @main_category, defaults: { input_html: { class: 'text-black' } }  do |f| %>
+  <%= render 'layouts/form_errors', resource: @main_category %>
+  <%= f.input :name, label: 'Main Category' %>
+  <h3>Sub Categories</h3>
+  <div id='tasks'>
+    <%= f.simple_fields_for :sub_categories do |sub_cat| %>
+      <%= render 'sub_category_fields', :f => sub_cat %>
+    <% end %>
+    <div class='links mt-4 underline'>
+      <%= link_to_add_association 'add sub category', f, :sub_categories %>
+    </div>
+  </div>
+  <%= f.submit 'Save', class: '!bg-green-700 w-28 rounded p-2 mt-8' %>
+<% end %>
