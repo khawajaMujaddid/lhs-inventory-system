@@ -7,5 +7,5 @@ import { application } from "./application"
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-import ProductCreateController from "./product_create_controller"
-application.register("product-create", ProductCreateController)
+import SubCategoryController from "./sub_category_controller"
+application.register("sub-category", SubCategoryController)
