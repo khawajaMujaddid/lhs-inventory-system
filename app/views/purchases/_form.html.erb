@@ -1,0 +1,23 @@
+<%= form_with model: @purchase, class: 'p-10 rounded-lg shadow-lg min-w-full' do |f| %>
+  <%= render 'layouts/form_errors', resource: @purchase %>
+  <div class="flex flex-col items-center">
+    <div class="mb-3" style="width: 28rem;">
+      <label class="text-white-800 font-semibold block my-3 text-md" for="username">Product</label>
+      <%= f.select(:product_id, Product.all.map{|m| [m.name.humanize, m.id]}, { prompt: 'Select Product' },
+                  { class: 'text-black w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none', required: true }) %>
+    </div>
+    <div class="mb-3" style="width: 28rem;">
+      <label class="text-white-800 font-semibold block my-3 text-md">Date of Purchase</label>
+      <%= f.date_field :date_purchased, class: 'text-black w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none' %>
+    </div>
+    <div class="mb-3" style="width: 28rem;">
+      <label class="text-white-800 font-semibold block my-3 text-md" for="password">Quantity Purchased</label>
+      <%= f.number_field :quantity, class: 'text-black w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none' %>
+    </div>
+    <div class="mb-3" style="width: 28rem;">
+      <label class="text-white-800 font-semibold block my-3 text-md" for="password">Total Amount</label>
+      <%= f.number_field :price, class: 'text-black w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none' %>
+    </div>
+    <%= f.submit class: 'mt-6 mb-3 bg-indigo-100 rounded-lg px-4 py-2 text-lg text-gray-800 tracking-wide font-semibold font-sans' %>
+  </div>
+<% end %>
